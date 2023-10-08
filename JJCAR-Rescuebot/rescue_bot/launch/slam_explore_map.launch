@@ -1,0 +1,12 @@
+<launch>
+ <arg name="rviz" default="false"/>
+
+
+    <arg name="map_file" default="/home/rs1/catkin_ws/src/robots/configs/spot_config/maps/map.yaml"/>
+    <node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" />
+
+    <include file="$(find rescue_bot)/launch/slam.launch">
+        <arg name="rviz" default="$(arg rviz)"/>
+    </include>
+    <include file="$(find explore_lite)/launch/explore.launch" />
+</launch>
